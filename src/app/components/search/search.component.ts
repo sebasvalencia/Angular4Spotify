@@ -12,7 +12,11 @@ export class SearchComponent implements OnInit {
   //Inyecto el servicio al componente
   constructor(public _spotify: SpotifyService) {
 
-    this._spotify.getArtistas();
+    this._spotify.getArtistas()
+      .subscribe(artistas => {
+      console.log('Información Lista!');
+      console.log(artistas);
+    });
 
    }
 
