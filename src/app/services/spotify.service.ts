@@ -12,21 +12,23 @@ export class SpotifyService {
     console.log('Servicio Spotify listo');
   }
 
-  getArtistas() {
+  getArtistas(termino:string) {
 
-    let url = "https://api.spotify.com/v1/search?query=metallica&type=artist&limit=20";
+    let url = `https://api.spotify.com/v1/search?query=${termino}&type=artist&limit=20`;
     let headers = new HttpHeaders({
-      'authorization': 'Bearer BQAYah-BTLLylYRogBGAYewUPCnMEI61aAmEwNOLCt6lrwCtD7HQe95EDiBKFIlvRE80AmHDbwpwIMDcPOE';
+      'authorization': 'Bearer BQAYah-BTLLylYRogBGAYewUPCnMEI61aAmEwNOLCt6lrwCtD7HQe95EDiBKFIlvRE80AmHDbwpwIMDcPOE'
     });
 
 
     return this.http.get(url, { headers: headers })
       .map(respuesta => {
+        console.log(respuesta);
         //obtiene la respuesta de la peticion 
         //y lo cambia - transformar data
         //llenar el arreglo
         this.artistas = respuesta.artists.items;
         return this.artistas;
+        //return respuesta:
       });
 
 
