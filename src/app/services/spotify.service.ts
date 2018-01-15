@@ -7,18 +7,24 @@ import 'rxjs/add/operator/map';
 export class SpotifyService {
 
   artistas: any[] = [];
+  urlSpotify: string = "https://api.spotify.com/v1/";
+  token: string = "BQDS9mXEVlqOf4gXlIzVlVSe5ukuVA2zH5cjgriIIQgB0Tr5jVSOdGummajelkY3khBkPgBMDz2hmh1Qt9w";
 
   constructor(public http: HttpClient) {
     console.log('Servicio Spotify listo');
   }
 
-  getArtistas(termino:string) {
-
-    let url = `https://api.spotify.com/v1/search?query=${termino}&type=artist&limit=20`;
+  private getHeaders(): HttpHeaders {
     let headers = new HttpHeaders({
-      'authorization': 'Bearer BQAYah-BTLLylYRogBGAYewUPCnMEI61aAmEwNOLCt6lrwCtD7HQe95EDiBKFIlvRE80AmHDbwpwIMDcPOE'
+      'authorization': 'Bearer ' + this.token
     });
+    return headers;
+  }
 
+  getArtistas(termino: string) {
+
+    let url = `${this.urlSpotify}search?query=${termino}&type=artist&limit=20`;
+    let headers = this.getHeaders();
 
     return this.http.get(url, { headers: headers })
       .map(respuesta => {
@@ -30,6 +36,15 @@ export class SpotifyService {
         return this.artistas;
         //return respuesta:
       });
+  }
+
+  getArtista(id: string) {
+    let url = `${this.urlSpotify}artists/${id}`;
+    let headers = this.getHeaders();
+
+    return this.http.get(url, { headers });
+
+
 
 
   }
