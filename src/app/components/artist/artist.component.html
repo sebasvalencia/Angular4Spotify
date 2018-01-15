@@ -6,7 +6,7 @@
     <div class="col-md-9">
       <h1>{{artista.name}}</h1>
       <hr>
-      <a  [href]="artista.external_urls?.spotify" target="_blank" class="btn btn-outline-primary">Abrir Spotify</a>
+      <a [href]="artista.external_urls?.spotify" target="_blank" class="btn btn-outline-primary">Abrir Spotify</a>
       <button [routerLink]="['search']" class="btn btn-outline-danger">Regresar</button>
     </div>
   </div>
@@ -26,7 +26,7 @@
         </thead>
         <tbody>
           <tr *ngFor="let pista of pistas; let i = index">
-            
+
             <td>{{i+1}}</td>
             <td>
               <img [src]="pista.album.images | sinfoto" class="img-50">
@@ -34,14 +34,16 @@
             <td>{{pista.name}}</td>
             <td>{{pista.popularity}}%</td>
             <td>
-              <audio controls >
+              <iframe [src]="pista.uri | domseguro:'https://open.spotify.com/embed?uri='" width="300" height="80" frameborder="0"
+                allowtransparency="true"></iframe>
+              <!--<audio controls >
                 <source [src]="artista.preview_url">
                 Tu navegador es muy viejo
-              </audio>
+              </audio>-->
             </td>
-            
+
           </tr>
-          
+
         </tbody>
       </table>
 
