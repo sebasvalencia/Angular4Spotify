@@ -43,10 +43,12 @@ export class SpotifyService {
     let headers = this.getHeaders();
 
     return this.http.get(url, { headers });
+  }
 
-
-
-
+  getTop(id: string) {
+    let url = `${this.urlSpotify}artists/${id}/top-tracks?country=ES`;
+    let headers = this.getHeaders();
+    return this.http.get(url, { headers });
   }
 
 }
