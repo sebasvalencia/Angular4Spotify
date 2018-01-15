@@ -7,6 +7,14 @@ body{
   hr{
     border-color: white;
   }
+
+  .img-circular{
+    border-radius: 100%;
+  }
+
+  .img-50{
+    width: 50px;
+  }
   
   .jumbotron{
     background-color: #171717;
